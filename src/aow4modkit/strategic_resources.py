@@ -1,6 +1,7 @@
 """Public named recipes for the observed strategic spell/dialog subset.
 
-Unknown static formatter/render/target parameters can be preserved explicitly.
+Static formatter/render/target parameters use typed native structures. Legacy
+authored recipes can still preserve their previously audited bytes explicitly.
 Executable trigger graphs always use typed Script/Expr definitions, never an
 opaque old RPK or serialized script blob.
 """
@@ -9,10 +10,12 @@ from importlib.resources import files
 import json
 
 from .compiler import Script
+from .constants import ClassId
 from .errors import ValidationError
 from .formats.binary import FieldTable, U32
 from .formats.rpk import ResourceRecord
 from .resources import ResourceDefinition, LocalizedText
+from .native_values import NativeValue, NATIVE_TYPES
 
 
 @dataclass(frozen=True)
@@ -76,9 +79,12 @@ class ProfileResource(ResourceDefinition):
                         raise ValidationError("Boolean recipe parameter must be bool")
                     encoded = bytes([value])
                 elif codec == "preserved":
-                    if not isinstance(value, PreservedParameter):
-                        raise ValidationError("Static unknown fields require explicit PreservedParameter")
-                    encoded = value.data
+                    if isinstance(value, PreservedParameter):
+                        encoded = value.data  # Backward-compatible authored recipes.
+                    elif isinstance(value, NativeValue) and type(value) is NATIVE_TYPES.get(item.get("native_type")):
+                        encoded = value.encode(context)
+                    else:
+                        raise ValidationError(f"Static field requires {item.get('native_type', 'PreservedParameter')}")
                 elif codec == "script":
                     encoded = context.script(self, value)
                 elif codec == "choices":
@@ -102,7 +108,7 @@ class ProfileResource(ResourceDefinition):
             fields = {0: bytes([choice.list_id]), 2: context.script(self, choice.action),
                       3: context.link(choice.category), 4: U32.pack(choice.visibility_mode),
                       5: context.localized(choice.text), 6: context.script(self, choice.visibility)}
-            rows[index] = ResourceRecord(0x474397, FieldTable(fields)).write()
+            rows[index] = ResourceRecord(ClassId.STORY_EVENT_CHOICE, FieldTable(fields)).write()
         entries = FieldTable({1: FieldTable(rows).write()}).write()
         return FieldTable({0: bytes([max(identifiers, default=-1)+1]), 1: entries}).write()
 

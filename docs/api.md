@@ -100,3 +100,21 @@ extension work. They retain unknown field bytes instead of manufacturing a
 semantic meaning. Arbitrary class authoring is not made safe merely by putting
 bytes in a container. Keep unknown classes out of high-level recipes until
 their schema is documented and verified.
+
+## Typed native static values
+
+[Native static values](native-static-values.md) covers targeter bindings, requisite lists,
+army conditions, empty text contexts and atlas region/render parameters added in local
+0.1.0a4.dev3. These replace the nine opaque static fields in the Donate export.
+
+## Typed text contexts
+
+[Text contexts](text-contexts.md) documents LocalizedText with TextContext, layout styles
+and TextSubstitution. Generated resource and notification text modules contain readable
+API values rather than serialized context payloads. Legacy byte contexts still compile.
+
+## Inverse ascension recipes
+
+[Ascension-resource export](ascension-python-export.md) documents full-pack export
+through TagBook, HiddenArtifactMarker, AscensionTrait and HeroSkill, including owned
+tag references and strict default/topology validation added in local dev5.

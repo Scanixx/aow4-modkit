@@ -66,3 +66,10 @@ A later readable export can reuse these containers and named schemas. It should
 represent the compiled result and preserve opaque data. It cannot recover source
 comments or reconstruct an author's exact original Python/editor workflow.
 That work is intentionally outside this first authoring preview.
+
+The next integrated reader/exporter is specified in [the local design proposal](reverse-export-design.md). It is not present in the published 0.1.0a3 binaries.
+
+The first analysis stage is implemented in the local development tree; see
+[trigger analysis](trigger-analysis.md). Strict trigger-scoped Python export is now implemented; see
+[the export guide](trigger-python-export.md). Template-free complete RPK export is now available for the supported strategic
+subset; see [full RPK export](full-rpk-python-export.md).

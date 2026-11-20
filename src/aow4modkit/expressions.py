@@ -18,23 +18,50 @@ REFERENCE_ARGUMENT_KINDS = {
 
 
 @dataclass(frozen=True)
-class ResourceRef:
+class ResourceHandle:
+    """Native lightweight ID/name pair; neither URL nor origin is invented."""
+    resource_id: int
+    name: str
+    kind = "other"
+
+    def __post_init__(self):
+        if type(self.resource_id) is not int or not 0 < self.resource_id <= 0xFFFFFFFFFFFFFFFF or not self.name:
+            raise ValidationError("Resource handle requires a nonzero 64-bit ID and name")
+
+
+@dataclass(frozen=True)
+class ResourceLink:
+    """Exact serialized link with no invented pack/DLC origin.
+
+    Suitable for rebuilding scripts inside an existing pack. A complete new
+    ModProject still needs ResourceRef declarations with known origin packs.
+    """
+    resource_id: int
+    name: str
+    url: str
+    kind = "other"
+
+    def __post_init__(self):
+        if type(self.resource_id) is not int or not 0 < self.resource_id <= 0xFFFFFFFFFFFFFFFF:
+            raise ValidationError("Resource ID must be a nonzero unsigned 64-bit integer")
+        if not self.name or not self.url.upper().startswith(f"[#{self.resource_id:016X}]"):
+            raise ValidationError("Resource link needs a name and URL starting with the matching ID")
+
+
+@dataclass(frozen=True)
+class ResourceRef(ResourceLink):
     """A complete external link. Declaring DLC does not require installing it.
 
     ``pack`` is the exact native RPK filename. ``url`` must be the actual
     resource URL, obtainable with the read-only inspect command. Numeric IDs
     alone do not supply the resource's schema or contents.
     """
-    resource_id: int
-    name: str
-    url: str
     pack: str
     dlc: DlcRequirement | None = None
     kind: str = "other"
 
     def __post_init__(self):
-        if type(self.resource_id) is not int or not 0 < self.resource_id <= 0xFFFFFFFFFFFFFFFF:
-            raise ValidationError("Resource ID must be a nonzero unsigned 64-bit integer")
+        super().__post_init__()
         if not self.name or not self.pack or any(c in self.pack for c in "/\\\x00"):
             raise ValidationError("External reference needs a name and a pack filename")
         if not self.url.upper().startswith(f"[#{self.resource_id:016X}]"):
@@ -76,7 +103,7 @@ class Expr:
 def literal(value) -> Expr:
     if isinstance(value, Expr):
         return value
-    if isinstance(value, (ResourceRef, OwnedResourceRef)):
+    if isinstance(value, (ResourceLink, OwnedResourceRef)):
         return Expr(T.RESOURCE_LINK, value=value)
     if type(value) is bool:
         return Expr(T.BOOLEAN, value=value)
@@ -99,7 +126,7 @@ def call(name: str, *arguments) -> Expr:
         if value.data_type != parameter.data_type:
             raise ValidationError(f"{name}.{parameter.name} expects {parameter.data_type.name}, got {value.data_type.name}")
         expected_kind = REFERENCE_ARGUMENT_KINDS.get(name, {}).get(parameter.name)
-        if expected_kind and isinstance(value.value, (ResourceRef, OwnedResourceRef)) and value.value.kind not in ("other", expected_kind):
+        if expected_kind and isinstance(value.value, (ResourceLink, OwnedResourceRef)) and value.value.kind not in ("other", expected_kind):
             raise ValidationError(f"{name}.{parameter.name} needs {expected_kind}, catalog declares {value.value.kind}")
     return Expr(spec.data_type, name, values)
 

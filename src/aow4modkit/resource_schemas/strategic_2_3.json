@@ -31,7 +31,8 @@
             {
               "name": "targeter_binding",
               "field": 13,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "StrategicTargeterBinding"
             },
             {
               "name": "instructions",
@@ -41,7 +42,8 @@
             {
               "name": "empty_text_context",
               "field": 28,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "EmptyTextContext"
             },
             {
               "name": "cost",
@@ -61,7 +63,8 @@
             {
               "name": "native_list_44",
               "field": 44,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "ResourceHandleList"
             },
             {
               "name": "native_flag_29",
@@ -76,7 +79,8 @@
             {
               "name": "operation_tags",
               "field": 26,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "ResourceHandleList"
             }
           ]
         },
@@ -126,7 +130,8 @@
             {
               "name": "unit_requisite_filter",
               "field": 2,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "UnitRequisiteFilter"
             }
           ]
         },
@@ -141,7 +146,8 @@
             {
               "name": "target_conditions",
               "field": 7,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "ArmyTargetConditions"
             }
           ]
         }
@@ -304,12 +310,14 @@
             {
               "name": "empty_title",
               "field": 1,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "EmptyTextContext"
             },
             {
               "name": "empty_description",
               "field": 2,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "EmptyTextContext"
             },
             {
               "name": "native_unlock_flag_3",
@@ -335,7 +343,8 @@
             {
               "name": "atlas_region",
               "field": 0,
-              "codec": "preserved"
+              "codec": "preserved",
+              "native_type": "TextureAtlasRegion"
             }
           ]
         }

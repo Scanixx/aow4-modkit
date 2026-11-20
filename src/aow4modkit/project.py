@@ -16,14 +16,14 @@ from .compatibility import DlcRequirement, compatibility_report
 from .compiler import Trigger, TriggerCompiler
 from .constants import DataType
 from .errors import ValidationError
-from .expressions import Expr, ResourceRef, OwnedResourceRef
+from .expressions import Expr, ResourceLink, ResourceRef, OwnedResourceRef
 from .resources import ResourceDefinition, ResourceContext
 from .formats.acp import ContentProject
 from .formats.rpk import ResourcePack
 from .localization import compile_messages
 from .profiles import GameProfile, DEFAULT_PROFILE
 
-TOOL_VERSION = "0.1.0a3"
+TOOL_VERSION = "0.1.0a4"
 
 
 def _json(value) -> bytes:
@@ -102,7 +102,7 @@ class ModProject:
         if not self.name or not self.author:
             raise ValidationError("Project name and author must not be empty")
         if not re.fullmatch(r"\d+(?:\.\d+)+(?:[A-Za-z0-9+._-]*)?", self.version):
-            raise ValidationError("Version must look like 0.1 or 0.1.0a3")
+            raise ValidationError("Version must look like 0.1 or 0.1.0a4")
         try:
             mod_id = self.mod_id if isinstance(self.mod_id, UUID) else UUID(self.mod_id)
         except (ValueError, TypeError, AttributeError) as exc:
@@ -158,6 +158,8 @@ class ModProject:
                     if ref.kind not in ("other", bindings[ref.key].kind):
                         raise ValidationError(f"Owned reference {ref.key} has an incompatible kind")
                     continue
+                if isinstance(ref, ResourceLink) and not isinstance(ref, ResourceRef):
+                    raise ValidationError("ResourceLink has no declared origin pack; use ResourceRef for a new ModProject")
                 if not isinstance(ref, ResourceRef):
                     raise ValidationError("Expected a declared resource reference")
                 if ref.resource_id in refs and refs[ref.resource_id] != ref:

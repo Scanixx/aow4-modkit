@@ -5,7 +5,7 @@ import json
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.1.0a3"
+VERSION = "0.1.0a4"
 SOURCE_DIRECTORIES = ("src", "docs", "examples", "tests", "tools")
 ROOT_FILES = ("README.md", "NOTICE.md", "CHANGELOG.md", "pyproject.toml", ".gitignore", "LICENSE")
 EXCLUDED_PARTS = {"__pycache__", "artifacts", "build", "dist", ".git", ".venv"}

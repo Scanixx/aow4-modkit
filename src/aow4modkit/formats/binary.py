@@ -1,5 +1,5 @@
 """Small bounded codecs for observed little-endian field tables."""
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import struct
 
 from ..errors import FormatError
@@ -64,6 +64,9 @@ class FieldTable:
     fields: dict[int, bytes]
     narrow_count: int = 0
     entry_order: tuple[int, ...] = ()
+    # Byte ranges in the exact buffer supplied to read(), including its offset.
+    # Read-time provenance only: mutating fields does not update these ranges.
+    field_spans: dict[int, tuple[int, int]] = field(default_factory=dict, repr=False, compare=False)
 
     @classmethod
     def read(cls, data: bytes, offset: int = 0) -> "FieldTable":
@@ -93,11 +96,12 @@ class FieldTable:
             raise FormatError("Field offsets extend outside payload or leave a leading gap")
         if not pairs and payload_size:
             raise FormatError("Unexpected payload after empty field table")
-        values = {}
+        values, spans = {}, {}
         for index, (key, start) in enumerate(by_offset):
             end = by_offset[index + 1][1] if index + 1 < len(by_offset) else payload_size
             values[key] = data[end_directory + start:end_directory + end]
-        return cls(values, narrow, order)
+            spans[key] = (end_directory + start, end_directory + end)
+        return cls(values, narrow, order, spans)
 
     def write(self) -> bytes:
         """Serialize fields, retaining narrow/wide choices where they still fit."""

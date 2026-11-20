@@ -49,9 +49,20 @@ New binary classes require a schema and serializer, not only a new numeric ID.
 
 More Secret Ascension Skills 0.4 now has public-API authoring under its
 `source/` directory, independently compared to the unchanged original release.
-Donate Spell migration remains a follow-up. Keep historical ZIPs unchanged and
+Donate Spell 0.14 also uses the public API and retains its reference archive. Keep historical ZIPs unchanged and
 compare resource meaning/behavior before switching released builds; changed
 binary field ordering alone is not necessarily a gameplay change.
 
-The current task prepares local code and artifacts. It does not publish the
-repository or authorize an upload of game data.
+Build and inspection commands create local artifacts. They do not publish a
+repository or upload game data.
+
+## Integrated trigger decoder
+
+Local 0.1.0a4.dev0 includes `aow4modkit.analysis` and CLI trigger decoding.
+See [the implementation guide](trigger-analysis.md) and [longer export design](reverse-export-design.md).
+
+Local 0.1.0a4.dev1 adds [strict trigger Python export and explicit rebuild](trigger-python-export.md).
+The public 0.1.0a3 binaries remain unchanged.
+
+Local 0.1.0a4.dev2 adds [complete RPK Python export](full-rpk-python-export.md)
+for the explicitly supported resource subset, without an input binary template.

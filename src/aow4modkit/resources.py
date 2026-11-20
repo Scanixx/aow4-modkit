@@ -12,9 +12,10 @@ from uuid import UUID
 from .constants import (ClassId, TokenField, AscensionField, HeroSkillField,
                         HeroSkillNormalField)
 from .errors import ValidationError
-from .expressions import ResourceRef, OwnedResourceRef
+from .expressions import ResourceHandle, ResourceLink, ResourceRef, OwnedResourceRef
 from .formats.binary import FieldTable, U32, U64, encode_string
 from .formats.rpk import ResourceRecord
+from .text_contexts import TextContext
 
 Reference = ResourceRef | OwnedResourceRef
 
@@ -25,7 +26,7 @@ def _table(fields, narrow=0):
 
 def iter_references(value):
     """Find declared links without guessing resource IDs inside opaque bytes."""
-    if isinstance(value, (ResourceRef, OwnedResourceRef)):
+    if isinstance(value, (ResourceHandle, ResourceLink, OwnedResourceRef)):
         yield value
     elif is_dataclass(value):
         for field in fields(value):
@@ -40,14 +41,14 @@ def iter_references(value):
 
 @dataclass(frozen=True)
 class LocalizedText:
-    """A catalog key plus optional preserved localized-link parameter context.
+    """A catalog key with optional typed native text/formatter metadata.
 
-    ``context`` is structural migration metadata, not the translated string.
-    Ordinary authors should use just the key. It is retained byte-for-byte
-    apart from replacing its key, avoiding changes to old formatter parameters.
+    ``context`` accepts TextContext, or legacy bytes for existing authored mods.
+    It describes storage and formatting, not the translated string. Ordinary
+    authors may use just the key. Translations are provided by the MO catalog.
     """
     key: str
-    context: bytes | None = None
+    context: TextContext | bytes | None = None
 
 
 @dataclass(frozen=True)
@@ -65,13 +66,14 @@ class TagRef:
 
 class ResourceContext:
     """Public recipe compilation context supplied by ModProject."""
-    def __init__(self, bindings, profile, definitions=None, mod_id=None):
+    def __init__(self, bindings, profile, definitions=None, mod_id=None, *, serialized_links=False):
         self.bindings, self.profile = bindings, profile
         self.definitions = definitions or {}
         self.mod_id = mod_id
+        self.serialized_links = serialized_links
         self._script_compilers = {}
         if profile.key != "aow4-2.3-observed-v1":
-            raise ValidationError(f"Ascension recipes have no verified schema for profile {profile.key}")
+            raise ValidationError(f"Resource recipes have no verified schema for profile {profile.key}")
         self.defaults = json.loads(files("aow4modkit").joinpath(
             "resource_schemas", "ascension_2_3.json").read_text(encoding="utf-8"))
 
@@ -85,6 +87,8 @@ class ResourceContext:
             return actual
         if isinstance(ref, ResourceRef):
             return ref
+        if self.serialized_links and isinstance(ref, ResourceLink):
+            return ref
         raise ValidationError("Expected a resource reference")
 
     def link(self, ref: Reference, expected_kind=None) -> bytes:
@@ -94,7 +98,14 @@ class ResourceContext:
         return _table({20: encode_string(value.url), 22: U64.pack(value.resource_id), 23: encode_string(value.name)})
 
     def light_links(self, refs, expected_kind=None) -> bytes:
-        values = [self.resolve(ref) for ref in refs]
+        values = []
+        for ref in refs:
+            if isinstance(ref, ResourceHandle):
+                if not self.serialized_links:
+                    raise ValidationError("Native ResourceHandle needs explicit RPK context; declare ResourceRef for a ModProject")
+                values.append(ref)
+            else:
+                values.append(self.resolve(ref))
         if expected_kind and any(value.kind not in ("other", expected_kind) for value in values):
             raise ValidationError(f"Expected only {expected_kind} light links")
         return _table({30: _table({1: _table({i: U32.pack(0x40004A) + _table(
@@ -104,6 +115,8 @@ class ResourceContext:
     def localized(self, text: LocalizedText) -> bytes:
         if not isinstance(text, LocalizedText) or not text.key:
             raise ValidationError("Localized resource fields need a nonempty LocalizedText key")
+        if isinstance(text.context,TextContext):
+            return text.context.encode(text.key)
         if text.context is not None:
             table = FieldTable.read(text.context)
             inner = FieldTable.read(table.fields[0]) if 0 in table.fields else table

@@ -35,3 +35,17 @@ is performed. ZIPs are assembled from planned files, not by zipping arbitrary
 extra files found in a directory.
 
 There are no install, editor-control, Workshop-upload or GitHub-publish commands.
+
+## Local development trigger analysis
+
+In 0.1.0a4.dev0, `inspect FILE --detail` emits trigger-analysis JSON and
+`decode FILE --output DIRECTORY` writes readable outlines and the exact input
+copy. See [trigger analysis](trigger-analysis.md) for scope, limits and exit
+codes. In 0.1.0a4.dev1, `export-python INPUT --output DIRECTORY --mod-id UUID`
+exports supported triggers; `rebuild-triggers DIRECTORY --output OUTPUT.rpk`
+explicitly rebuilds trusted exported Python. See [trigger Python export](trigger-python-export.md).
+
+In 0.1.0a4.dev2, `export-python INPUT --scope pack --mod-id UUID --output SOURCE`
+exports all supported resources without a binary template. `build-pack SOURCE
+--output FILE.rpk [--reference ORIGINAL.rpk]` constructs the complete RPK.
+See [full RPK Python export](full-rpk-python-export.md).

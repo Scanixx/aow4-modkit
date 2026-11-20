@@ -27,6 +27,26 @@ class ClassId(IntEnum):
     SIDE_PROPERTY = 0x471476
     SIDE_PROPERTY_BASE = 0x4714A3
     TAG_BOOK = 0x40141D
+    STORY_EVENT = 0x474393
+    STORY_EVENT_BASE = 0x4774F0
+    STORY_EVENT_CHOICE = 0x474397
+
+
+class StoryEventBaseField(IntEnum):
+    INITIALIZATION = 1
+
+
+class StoryEventField(IntEnum):
+    CHOICES = 4
+
+
+class StoryChoiceField(IntEnum):
+    LIST_ID = 0
+    ACTION = 2
+    CATEGORY = 3
+    VISIBILITY_MODE = 4
+    TEXT = 5
+    VISIBILITY = 6
 
 
 class ResourceField(IntEnum):

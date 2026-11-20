@@ -1,6 +1,22 @@
 # AoW4 ModKit
 
-Experimental Python authoring tools for **Age of Wonders 4 2.3.x**.
+Python authoring and migration tools for **Age of Wonders 4 2.3.x**.
+
+AoW4 ModKit helps mod authors convert supported RPK data from their existing
+mods into readable Python, then continue development through a named public API.
+Keep your mod under version control, make changes in Python, and build native
+game data again with a repeatable workflow. You can also start a new mod directly
+with the Python API.
+
+The conversion workflow is intended for mods you created or maintain, and for
+projects whose authors have given you permission to adapt them. Preserve their
+credits and license notices. Converting a mod does not change ownership of its
+content or the terms under which it may be shared.
+
+Prepared preview version: **0.1.0a4**, adding readable analysis and Python
+conversion for supported RPK resources and scripts. See the
+[release notes](docs/releases/0.1.0a4.md). The current public release remains
+**0.1.0a3**; this update has not been published.
 
 Write named Python definitions, validate them, and build a mod folder and ZIP
 containing native ACP/RPK data. Python runs during the build, **not in the game**.
@@ -65,6 +81,10 @@ UUID. Keep that UUID and resource keys stable for later updates.
 - [Reviewing game/editor updates](docs/editor-updates.md)
 - [CLI reference](docs/cli.md)
 - [Developer checks and future work](docs/development.md)
+- [Readable RPK trigger analysis (local development)](docs/trigger-analysis.md)
+- [Rebuildable trigger Python export (local development)](docs/trigger-python-export.md)
+- [Complete template-free RPK Python export (local development)](docs/full-rpk-python-export.md)
+- [Design proposal: integrated RPK analysis and Python export](docs/reverse-export-design.md)
 
 ## Current scope
 
@@ -77,7 +97,8 @@ and unchanged asset packaging. It does not generate texture atlases.
 
 Does not provide constructors for every hero-skill subtype, spell, unit, UI,
 atlas, or arbitrary resource class. Inspection preserves unknown field bytes
-where the enclosing layout is supported; it does not decompile complete mods.
+where the enclosing layout is supported. Conversion currently covers supported
+resources and scripts, rather than every possible mod or editor feature.
 Malformed and unsupported layouts fail rather than being guessed.
 
 **Targeting 2.3.x is not a claim of end-to-end testing on every patch or DLC.**
@@ -86,5 +107,22 @@ Pantheon behavior, UI, save compatibility or network multiplayer.
 
 No game binaries, game artwork or other authors' mod packages are included.
 The authored code and documentation use the [MIT License](LICENSE).
-See [provenance and distribution status](NOTICE.md). This preview has not yet
-been published.
+See [provenance and distribution status](NOTICE.md).
+
+## Public release
+
+- Repository: [Scanixx/aow4-modkit](https://github.com/Scanixx/aow4-modkit)
+- Current public preview: [v0.1.0a3](https://github.com/Scanixx/aow4-modkit/releases/tag/v0.1.0a3), published November 20, 2026.
+- All four release assets were downloaded without authentication and matched
+  the prepared local files: wheel, source ZIP and their SHA-256 files.
+
+Local documentation was updated after publication. The published 0.1.0a3
+archives are retained unchanged; documentation updates are not automatically
+committed or pushed.
+
+Typed static resource values are documented in [Native static values](docs/native-static-values.md).
+
+Localized keys, dialog wrappers and notification formatter contexts now use
+[typed text contexts](docs/text-contexts.md), including readable Python export.
+
+Full RPK export also supports [ascension resources and owned tag books](docs/ascension-python-export.md).

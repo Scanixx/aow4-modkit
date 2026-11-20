@@ -123,6 +123,22 @@ class ResourcePack:
             for group, index, record in store.records():
                 yield store_id, group, index, record
 
+    def replace_record(self, store_id, group_id, index, record):
+        """Replace one existing record, retaining other records/store metadata."""
+        if not isinstance(record, ResourceRecord):
+            raise ValidationError("replace_record expects a ResourceRecord")
+        stores = FieldTable.read(self.table.fields[PackField.STORES])
+        store = ContentStore.read(stores.fields[store_id], profile=self.profile)
+        groups = FieldTable.read(store.manager.fields[StoreField.RESOURCE_GROUPS])
+        records = FieldTable.read(groups.fields[group_id])
+        if index not in records.fields:
+            raise ValidationError("Cannot replace a missing resource record")
+        records.fields[index] = record.write()
+        groups.fields[group_id] = records.write()
+        store.manager.fields[StoreField.RESOURCE_GROUPS] = groups.write()
+        stores.fields[store_id] = store.write()
+        self.table.fields[PackField.STORES] = stores.write()
+
     @property
     def dependencies(self) -> list[str]:
         return decode_strings(self.table.fields.get(PackField.DEPENDENCIES, U32.pack(0)))
