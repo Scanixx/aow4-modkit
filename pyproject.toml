@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aow4modkit"
+version = "0.1.0a3"
+description = "Experimental Python authoring tools for observed Age of Wonders 4 mod formats"
+requires-python = ">=3.11"
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+authors = [{name = "Scanix"}]
+dependencies = []
+
+[project.scripts]
+aow4modkit = "aow4modkit.cli:main"
+
+[tool.setuptools]
+license-files = ["LICENSE"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aow4modkit = ["content_definitions/*.json", "resource_schemas/*.json", "function_schemas/*.json"]

@@ -1,0 +1,969 @@
+{
+  "profile": "aow4-2.3-observed-v1",
+  "functions": [
+    {
+      "name": "events.compatibility_validation",
+      "data_type": 0,
+      "function_id": 2,
+      "description": "The system runs compatibility validation process.",
+      "parameters": [
+        {
+          "name": "data_list",
+          "data_type": 4
+        }
+      ]
+    },
+    {
+      "name": "events.specific_spawn",
+      "data_type": 0,
+      "function_id": 73,
+      "description": "A Player tries to check if this Event should be spawned.",
+      "parameters": [
+        {
+          "name": "data_list",
+          "data_type": 4
+        }
+      ]
+    },
+    {
+      "name": "players.cast_spell",
+      "data_type": 0,
+      "function_id": 89,
+      "description": "A player casts a spell.",
+      "parameters": [
+        {
+          "name": "data_list",
+          "data_type": 4
+        }
+      ]
+    },
+    {
+      "name": "comparisons.integer",
+      "data_type": 1,
+      "function_id": 2,
+      "description": "Native Comparison.Integer expression.",
+      "parameters": [
+        {
+          "name": "left",
+          "data_type": 10
+        },
+        {
+          "name": "operator",
+          "data_type": 7
+        },
+        {
+          "name": "right",
+          "data_type": 10
+        }
+      ]
+    },
+    {
+      "name": "comparisons.side",
+      "data_type": 1,
+      "function_id": 18,
+      "description": "Native Comparison.Side expression.",
+      "parameters": [
+        {
+          "name": "left",
+          "data_type": 48
+        },
+        {
+          "name": "operator",
+          "data_type": 7
+        },
+        {
+          "name": "right",
+          "data_type": 48
+        }
+      ]
+    },
+    {
+      "name": "comparisons.structure",
+      "data_type": 1,
+      "function_id": 20,
+      "description": "Native Comparison.Structure expression.",
+      "parameters": [
+        {
+          "name": "left",
+          "data_type": 50
+        },
+        {
+          "name": "operator",
+          "data_type": 7
+        },
+        {
+          "name": "right",
+          "data_type": 50
+        }
+      ]
+    },
+    {
+      "name": "comparisons.diplomatic_state_resource",
+      "data_type": 1,
+      "function_id": 42,
+      "description": "Native Comparison.DiplomaticStateResource expression.",
+      "parameters": [
+        {
+          "name": "left",
+          "data_type": 105
+        },
+        {
+          "name": "operator",
+          "data_type": 7
+        },
+        {
+          "name": "right",
+          "data_type": 105
+        }
+      ]
+    },
+    {
+      "name": "comparisons.special_operation_resource",
+      "data_type": 1,
+      "function_id": 51,
+      "description": "Native Comparison.SpecialOperationResource expression.",
+      "parameters": [
+        {
+          "name": "left",
+          "data_type": 116
+        },
+        {
+          "name": "operator",
+          "data_type": 7
+        },
+        {
+          "name": "right",
+          "data_type": 116
+        }
+      ]
+    },
+    {
+      "name": "actions.delete",
+      "data_type": 3,
+      "function_id": 7,
+      "description": "Delete a variable from the given pool.",
+      "parameters": [
+        {
+          "name": "variable_pool",
+          "data_type": 25
+        },
+        {
+          "name": "variable_name",
+          "data_type": 27
+        }
+      ]
+    },
+    {
+      "name": "players.unlock_research",
+      "data_type": 3,
+      "function_id": 72,
+      "description": "Instantly complete research on the given skill for a Player.",
+      "parameters": [
+        {
+          "name": "player",
+          "data_type": 42
+        },
+        {
+          "name": "resource_link",
+          "data_type": 31
+        }
+      ]
+    },
+    {
+      "name": "stacks.set_side",
+      "data_type": 3,
+      "function_id": 76,
+      "description": "Change the Side of a Stack.",
+      "parameters": [
+        {
+          "name": "stack",
+          "data_type": 49
+        },
+        {
+          "name": "side",
+          "data_type": 48
+        }
+      ]
+    },
+    {
+      "name": "actions.create_event",
+      "data_type": 3,
+      "function_id": 96,
+      "description": "Trigger a Story Event for a Player.",
+      "parameters": [
+        {
+          "name": "event",
+          "data_type": 79
+        },
+        {
+          "name": "player",
+          "data_type": 42
+        }
+      ]
+    },
+    {
+      "name": "units.set_side",
+      "data_type": 3,
+      "function_id": 203,
+      "description": "Change the Side of a Unit.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        },
+        {
+          "name": "side",
+          "data_type": 48
+        }
+      ]
+    },
+    {
+      "name": "players.show_todo_event_at_position",
+      "data_type": 3,
+      "function_id": 522,
+      "description": "Show a custom Todo Event in a Player's Event List, optionally using variables from the given pool.",
+      "parameters": [
+        {
+          "name": "player",
+          "data_type": 42
+        },
+        {
+          "name": "title",
+          "data_type": 132
+        },
+        {
+          "name": "body",
+          "data_type": 132
+        },
+        {
+          "name": "icon",
+          "data_type": 31
+        },
+        {
+          "name": "hover_icon",
+          "data_type": 31
+        },
+        {
+          "name": "position",
+          "data_type": 15
+        },
+        {
+          "name": "variables",
+          "data_type": 25
+        }
+      ]
+    },
+    {
+      "name": "integers.variable",
+      "data_type": 10,
+      "function_id": 1,
+      "description": "Retrieve an Integer value from a variable.",
+      "parameters": [
+        {
+          "name": "variable_value",
+          "data_type": 28
+        }
+      ]
+    },
+    {
+      "name": "units.move_points",
+      "data_type": 10,
+      "function_id": 33,
+      "description": "Retrieve the number of Move Points a Unit has.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "units.move_points_max",
+      "data_type": 10,
+      "function_id": 34,
+      "description": "Retrieve the maximum number of Move Points a Unit can have.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "units.hit_points",
+      "data_type": 10,
+      "function_id": 35,
+      "description": "Retrieve the number of Hit Points a Unit has.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "units.hit_points_max",
+      "data_type": 10,
+      "function_id": 36,
+      "description": "Retrieve the maximum number of Hit Points a Unit can have.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "stacks.unit_count",
+      "data_type": 10,
+      "function_id": 59,
+      "description": "Retrieve the number of Units in a Stack.",
+      "parameters": [
+        {
+          "name": "stack",
+          "data_type": 49
+        }
+      ]
+    },
+    {
+      "name": "units.unit_rank",
+      "data_type": 10,
+      "function_id": 68,
+      "description": "Retrieve the Rank of a Unit.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "players.is_lord",
+      "data_type": 12,
+      "function_id": 10,
+      "description": "Check if a Player is a Lord Player.",
+      "parameters": [
+        {
+          "name": "player",
+          "data_type": 42
+        }
+      ]
+    },
+    {
+      "name": "stacks.has_unit",
+      "data_type": 12,
+      "function_id": 17,
+      "description": "Check if a Stack contains the given Unit.",
+      "parameters": [
+        {
+          "name": "stack",
+          "data_type": 49
+        },
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "stacks.is_valid",
+      "data_type": 12,
+      "function_id": 18,
+      "description": "Check if a Stack is valid (not null).",
+      "parameters": [
+        {
+          "name": "stack",
+          "data_type": 49
+        }
+      ]
+    },
+    {
+      "name": "structures.is_valid",
+      "data_type": 12,
+      "function_id": 30,
+      "description": "Check if a Structure is valid (not null).",
+      "parameters": [
+        {
+          "name": "structure",
+          "data_type": 50
+        }
+      ]
+    },
+    {
+      "name": "structures.is_city",
+      "data_type": 12,
+      "function_id": 31,
+      "description": "Check if a Structure is a City.",
+      "parameters": [
+        {
+          "name": "structure",
+          "data_type": 50
+        }
+      ]
+    },
+    {
+      "name": "units.is_valid",
+      "data_type": 12,
+      "function_id": 35,
+      "description": "Check if a Unit is valid (not null).",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "sides.is_lord",
+      "data_type": 12,
+      "function_id": 60,
+      "description": "Check if a Side belongs to a Lord Player.",
+      "parameters": [
+        {
+          "name": "side",
+          "data_type": 48
+        }
+      ]
+    },
+    {
+      "name": "units.is_dead",
+      "data_type": 12,
+      "function_id": 70,
+      "description": "Check if a Unit is dead.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "units.is_hero",
+      "data_type": 12,
+      "function_id": 76,
+      "description": "Check if a Unit is a Hero.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "units.is_leader",
+      "data_type": 12,
+      "function_id": 77,
+      "description": "Check if a Unit is a Leader.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "players.has_skill_researched",
+      "data_type": 12,
+      "function_id": 108,
+      "description": "Check if a Player has researched the given Skill.",
+      "parameters": [
+        {
+          "name": "player",
+          "data_type": 42
+        },
+        {
+          "name": "resource_link",
+          "data_type": 31
+        }
+      ]
+    },
+    {
+      "name": "structures.has_vision",
+      "data_type": 12,
+      "function_id": 181,
+      "description": "Check if a Player has vision on a Structure.",
+      "parameters": [
+        {
+          "name": "structure",
+          "data_type": 50
+        },
+        {
+          "name": "player",
+          "data_type": 42
+        }
+      ]
+    },
+    {
+      "name": "positions.variable",
+      "data_type": 15,
+      "function_id": 3,
+      "description": "Retrieve a Position value from a variable.",
+      "parameters": [
+        {
+          "name": "variable_value",
+          "data_type": 28
+        }
+      ]
+    },
+    {
+      "name": "positions.unit",
+      "data_type": 15,
+      "function_id": 9,
+      "description": "Retrieve the Position of a Unit.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "positions.special_operation",
+      "data_type": 15,
+      "function_id": 19,
+      "description": "Retrieve the Position of a Special Operation.",
+      "parameters": [
+        {
+          "name": "special_operation",
+          "data_type": 134
+        }
+      ]
+    },
+    {
+      "name": "pools.story_event",
+      "data_type": 25,
+      "function_id": 3,
+      "description": "Retrieve the Variable Pool of a Story Event.",
+      "parameters": [
+        {
+          "name": "story_event",
+          "data_type": 78
+        }
+      ]
+    },
+    {
+      "name": "pools.local",
+      "data_type": 25,
+      "function_id": 4,
+      "description": "Retrieve the Local Variable Pool.",
+      "parameters": []
+    },
+    {
+      "name": "values.name",
+      "data_type": 28,
+      "function_id": 0,
+      "description": "Retrieve a Variable Value by Name from a Variable Pool.",
+      "parameters": [
+        {
+          "name": "variable_pool",
+          "data_type": 25
+        },
+        {
+          "name": "variable_name",
+          "data_type": 27
+        }
+      ]
+    },
+    {
+      "name": "values.bool",
+      "data_type": 28,
+      "function_id": 4,
+      "description": "Create a Variable Value from a Boolean.",
+      "parameters": [
+        {
+          "name": "boolean",
+          "data_type": 12
+        }
+      ]
+    },
+    {
+      "name": "values.hex_pos",
+      "data_type": 28,
+      "function_id": 8,
+      "description": "Create a Variable Value from a Position.",
+      "parameters": [
+        {
+          "name": "hex_pos",
+          "data_type": 15
+        }
+      ]
+    },
+    {
+      "name": "values.entity",
+      "data_type": 28,
+      "function_id": 10,
+      "description": "Create a Variable Value from an Entity.",
+      "parameters": [
+        {
+          "name": "entity",
+          "data_type": 33
+        }
+      ]
+    },
+    {
+      "name": "values.player",
+      "data_type": 28,
+      "function_id": 12,
+      "description": "Create a Variable Value from a Player.",
+      "parameters": [
+        {
+          "name": "player",
+          "data_type": 42
+        }
+      ]
+    },
+    {
+      "name": "values.side",
+      "data_type": 28,
+      "function_id": 13,
+      "description": "Create a Variable Value from a Side.",
+      "parameters": [
+        {
+          "name": "side",
+          "data_type": 48
+        }
+      ]
+    },
+    {
+      "name": "values.unit_data",
+      "data_type": 28,
+      "function_id": 21,
+      "description": "Create a Variable Value from Unit Data.",
+      "parameters": [
+        {
+          "name": "unit_data",
+          "data_type": 36
+        }
+      ]
+    },
+    {
+      "name": "players.condition",
+      "data_type": 29,
+      "function_id": 33,
+      "description": "Retrieve a List of Players matching the given Conditions.",
+      "parameters": [
+        {
+          "name": "data_list",
+          "data_type": 4
+        }
+      ]
+    },
+    {
+      "name": "entities.variable",
+      "data_type": 33,
+      "function_id": 1,
+      "description": "Retrieve an Entity value from a variable.",
+      "parameters": [
+        {
+          "name": "variable_value",
+          "data_type": 28
+        }
+      ]
+    },
+    {
+      "name": "entities.unit",
+      "data_type": 33,
+      "function_id": 5,
+      "description": "Retrieve a Unit as an Entity.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "entities.structure",
+      "data_type": 33,
+      "function_id": 7,
+      "description": "Retrieve a Structure as an Entity.",
+      "parameters": [
+        {
+          "name": "structure",
+          "data_type": 50
+        }
+      ]
+    },
+    {
+      "name": "units.stack_slot",
+      "data_type": 34,
+      "function_id": 20,
+      "description": "Retrieve the Unit in the given Slot of a Stack.",
+      "parameters": [
+        {
+          "name": "stack",
+          "data_type": 49
+        },
+        {
+          "name": "slot",
+          "data_type": 10
+        }
+      ]
+    },
+    {
+      "name": "units.entity",
+      "data_type": 34,
+      "function_id": 24,
+      "description": "Retrieve an Entity as a Unit.",
+      "parameters": [
+        {
+          "name": "entity",
+          "data_type": 33
+        }
+      ]
+    },
+    {
+      "name": "unit_data.unit",
+      "data_type": 36,
+      "function_id": 3,
+      "description": "Retrieve the Unit Data of a Unit.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "players.side",
+      "data_type": 42,
+      "function_id": 5,
+      "description": "Retrieve the Player of a Side.",
+      "parameters": [
+        {
+          "name": "side",
+          "data_type": 48
+        }
+      ]
+    },
+    {
+      "name": "players.story_event",
+      "data_type": 42,
+      "function_id": 9,
+      "description": "Retrieve the Player of a Story Event. Only valid in Story Event Scripts.",
+      "parameters": [
+        {
+          "name": "story_event",
+          "data_type": 78
+        }
+      ]
+    },
+    {
+      "name": "sectors.hex_pos",
+      "data_type": 44,
+      "function_id": 5,
+      "description": "Retrieve the Sector at the given Position.",
+      "parameters": [
+        {
+          "name": "hex_pos",
+          "data_type": 15
+        }
+      ]
+    },
+    {
+      "name": "sides.variable",
+      "data_type": 48,
+      "function_id": 1,
+      "description": "Retrieve a Side value from a variable.",
+      "parameters": [
+        {
+          "name": "variable_value",
+          "data_type": 28
+        }
+      ]
+    },
+    {
+      "name": "sides.player",
+      "data_type": 48,
+      "function_id": 6,
+      "description": "Retrieve the Side of a Player.",
+      "parameters": [
+        {
+          "name": "player",
+          "data_type": 42
+        }
+      ]
+    },
+    {
+      "name": "sides.unit",
+      "data_type": 48,
+      "function_id": 9,
+      "description": "Retrieve the Side of a Unit.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "sides.stack",
+      "data_type": 48,
+      "function_id": 11,
+      "description": "Retrieve the Side of a Stack.",
+      "parameters": [
+        {
+          "name": "stack",
+          "data_type": 49
+        }
+      ]
+    },
+    {
+      "name": "sides.structure",
+      "data_type": 48,
+      "function_id": 12,
+      "description": "Retrieve the Side that owns a Structure.",
+      "parameters": [
+        {
+          "name": "structure",
+          "data_type": 50
+        }
+      ]
+    },
+    {
+      "name": "stacks.hex_pos",
+      "data_type": 49,
+      "function_id": 5,
+      "description": "Retrieve the Stack at the given Position.",
+      "parameters": [
+        {
+          "name": "hex_pos",
+          "data_type": 15
+        }
+      ]
+    },
+    {
+      "name": "stacks.unit",
+      "data_type": 49,
+      "function_id": 6,
+      "description": "Retrieve the Stack containing a Unit.",
+      "parameters": [
+        {
+          "name": "unit",
+          "data_type": 34
+        }
+      ]
+    },
+    {
+      "name": "structures.entity",
+      "data_type": 50,
+      "function_id": 26,
+      "description": "Retrieve an Entity as a Structure.",
+      "parameters": [
+        {
+          "name": "entity",
+          "data_type": 33
+        }
+      ]
+    },
+    {
+      "name": "structures.domain_structure",
+      "data_type": 50,
+      "function_id": 31,
+      "description": "Retrieve the Domain Structure of a Sector. Typically a City or Outpost.",
+      "parameters": [
+        {
+          "name": "sector",
+          "data_type": 44
+        }
+      ]
+    },
+    {
+      "name": "relations.player",
+      "data_type": 55,
+      "function_id": 1,
+      "description": "Retrieve the Relation between two Players.",
+      "parameters": [
+        {
+          "name": "source",
+          "data_type": 42
+        },
+        {
+          "name": "target",
+          "data_type": 42
+        }
+      ]
+    },
+    {
+      "name": "story_events.this",
+      "data_type": 78,
+      "function_id": 1,
+      "description": "Retrieve the current Story Event this script is running on.",
+      "parameters": []
+    },
+    {
+      "name": "event_resources.resource_link",
+      "data_type": 79,
+      "function_id": 1,
+      "description": "Retrieve a Story Event Resource from a Resource Link.",
+      "parameters": [
+        {
+          "name": "resource_link",
+          "data_type": 31
+        }
+      ]
+    },
+    {
+      "name": "diplomacy.resource_link",
+      "data_type": 105,
+      "function_id": 1,
+      "description": "Retrieve a Diplomatic State Resource from a Resource Link.",
+      "parameters": [
+        {
+          "name": "resource_link",
+          "data_type": 31
+        }
+      ]
+    },
+    {
+      "name": "diplomacy.player_relation",
+      "data_type": 105,
+      "function_id": 2,
+      "description": "Retrieve the Diplomatic State Resource of a Player Relation.",
+      "parameters": [
+        {
+          "name": "player_relation",
+          "data_type": 55
+        }
+      ]
+    },
+    {
+      "name": "spell_resources.resource_link",
+      "data_type": 116,
+      "function_id": 0,
+      "description": "Retrieve a Special Operation Resource from a Resource Link.",
+      "parameters": [
+        {
+          "name": "resource_link",
+          "data_type": 31
+        }
+      ]
+    },
+    {
+      "name": "spell_resources.triggering",
+      "data_type": 116,
+      "function_id": 1,
+      "description": "Native Event.Triggering expression.",
+      "parameters": []
+    },
+    {
+      "name": "text.localized_link",
+      "data_type": 132,
+      "function_id": 0,
+      "description": "Set a Localized String Link value manually.",
+      "parameters": [
+        {
+          "name": "localized_string_link_preset",
+          "data_type": 133
+        }
+      ]
+    },
+    {
+      "name": "spells.triggering",
+      "data_type": 134,
+      "function_id": 1,
+      "description": "Native Event.Triggering expression.",
+      "parameters": []
+    }
+  ]
+}

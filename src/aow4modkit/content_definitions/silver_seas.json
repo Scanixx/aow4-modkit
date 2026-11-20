@@ -1,0 +1,34 @@
+{
+  "format_version": 1,
+  "dlc": {
+    "key": "silver_seas",
+    "title": "Silver Seas",
+    "content_folder": "SilverSeas"
+  },
+  "resources": [
+    {
+      "key": "silver_seas.nevermoor_transformation",
+      "kind": "racial_transformation",
+      "id": "000004970000471A",
+      "name": "Nevermoor Curse - Racial Transformation",
+      "url": "[#000004970000471A]9\\\\3",
+      "pack": "SpawnSets_Strategic_SilverSeas.rpk"
+    },
+    {
+      "key": "silver_seas.nevermoor_unlock",
+      "kind": "side_property",
+      "id": "000004970000471C",
+      "name": "Nevermoor Curse - Player Unlock",
+      "url": "[#000004970000471C]9\\\\1",
+      "pack": "SpawnSets_Strategic_SilverSeas.rpk"
+    },
+    {
+      "key": "silver_seas.ghost_ship_recruitment",
+      "kind": "side_property",
+      "id": "000004C8000007D7",
+      "name": "Ghost Ship - Structure Property",
+      "url": "[#000004C8000007D7]1\\\\16",
+      "pack": "Units_Wildlife.rpk"
+    }
+  ]
+}

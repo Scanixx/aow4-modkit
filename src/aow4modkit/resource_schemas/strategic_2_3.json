@@ -1,0 +1,345 @@
+{
+  "profile": "aow4-2.3-observed-v1",
+  "resources": {
+    "strategic_army_spell": {
+      "class_id": "00471E36",
+      "kind": "spell_resource",
+      "classes": [
+        {
+          "class_id": "00471CE4",
+          "fields": [
+            {
+              "name": "required_properties",
+              "field": 3,
+              "codec": "links"
+            },
+            {
+              "name": "title",
+              "field": 5,
+              "codec": "localized"
+            },
+            {
+              "name": "icon",
+              "field": 6,
+              "codec": "link"
+            },
+            {
+              "name": "description",
+              "field": 7,
+              "codec": "localized"
+            },
+            {
+              "name": "targeter_binding",
+              "field": 13,
+              "codec": "preserved"
+            },
+            {
+              "name": "instructions",
+              "field": 14,
+              "codec": "localized"
+            },
+            {
+              "name": "empty_text_context",
+              "field": 28,
+              "codec": "preserved"
+            },
+            {
+              "name": "cost",
+              "field": 32,
+              "codec": "link"
+            },
+            {
+              "name": "visual_sequence",
+              "field": 39,
+              "codec": "link"
+            },
+            {
+              "name": "operation_screen",
+              "field": 42,
+              "codec": "link"
+            },
+            {
+              "name": "native_list_44",
+              "field": 44,
+              "codec": "preserved"
+            },
+            {
+              "name": "native_flag_29",
+              "field": 29,
+              "codec": "bool"
+            },
+            {
+              "name": "native_flag_46",
+              "field": 46,
+              "codec": "bool"
+            },
+            {
+              "name": "operation_tags",
+              "field": 26,
+              "codec": "preserved"
+            }
+          ]
+        },
+        {
+          "class_id": "00471E38",
+          "fields": [
+            {
+              "name": "native_spell_flag_6",
+              "field": 6,
+              "codec": "bool"
+            }
+          ]
+        },
+        {
+          "class_id": "00470244",
+          "fields": []
+        }
+      ]
+    },
+    "army_targeter": {
+      "class_id": "00471503",
+      "kind": "targeter",
+      "classes": [
+        {
+          "class_id": "004714CD",
+          "fields": [
+            {
+              "name": "properties",
+              "field": 3,
+              "codec": "links"
+            },
+            {
+              "name": "native_targeter_value_9",
+              "field": 9,
+              "codec": "u32"
+            }
+          ]
+        },
+        {
+          "class_id": "0047154B",
+          "fields": [
+            {
+              "name": "target_mode",
+              "field": 1,
+              "codec": "u32"
+            },
+            {
+              "name": "unit_requisite_filter",
+              "field": 2,
+              "codec": "preserved"
+            }
+          ]
+        },
+        {
+          "class_id": "00471502",
+          "fields": [
+            {
+              "name": "native_army_flag_3",
+              "field": 3,
+              "codec": "bool"
+            },
+            {
+              "name": "target_conditions",
+              "field": 7,
+              "codec": "preserved"
+            }
+          ]
+        }
+      ]
+    },
+    "story_event": {
+      "class_id": "00474393",
+      "kind": "story_event_resource",
+      "classes": [
+        {
+          "class_id": "004774F0",
+          "fields": [
+            {
+              "name": "event_type",
+              "field": 0,
+              "codec": "link"
+            },
+            {
+              "name": "initialization",
+              "field": 1,
+              "codec": "script"
+            },
+            {
+              "name": "rarity",
+              "field": 3,
+              "codec": "u32"
+            },
+            {
+              "name": "pace",
+              "field": 4,
+              "codec": "u32"
+            },
+            {
+              "name": "weight_filter",
+              "field": 5,
+              "codec": "u32"
+            },
+            {
+              "name": "pacing_gate",
+              "field": 8,
+              "codec": "u32"
+            }
+          ]
+        },
+        {
+          "class_id": "00474393",
+          "fields": [
+            {
+              "name": "choices",
+              "field": 4,
+              "codec": "choices"
+            },
+            {
+              "name": "native_event_flag_8",
+              "field": 8,
+              "codec": "bool"
+            },
+            {
+              "name": "title",
+              "field": 16,
+              "codec": "localized"
+            },
+            {
+              "name": "description",
+              "field": 17,
+              "codec": "localized"
+            },
+            {
+              "name": "native_event_flag_27",
+              "field": 27,
+              "codec": "bool"
+            },
+            {
+              "name": "native_event_flag_28",
+              "field": 28,
+              "codec": "bool"
+            }
+          ]
+        }
+      ]
+    },
+    "research_skill": {
+      "class_id": "00473702",
+      "kind": "research_skill",
+      "classes": [
+        {
+          "class_id": "00473702",
+          "fields": [
+            {
+              "name": "title",
+              "field": 1,
+              "codec": "localized"
+            },
+            {
+              "name": "description",
+              "field": 2,
+              "codec": "localized"
+            },
+            {
+              "name": "icon",
+              "field": 4,
+              "codec": "link"
+            },
+            {
+              "name": "group",
+              "field": 6,
+              "codec": "link"
+            },
+            {
+              "name": "grants",
+              "field": 13,
+              "codec": "links"
+            },
+            {
+              "name": "additional_grants",
+              "field": 14,
+              "codec": "links"
+            },
+            {
+              "name": "type_label",
+              "field": 20,
+              "codec": "localized"
+            },
+            {
+              "name": "native_research_flag_26",
+              "field": 26,
+              "codec": "bool"
+            },
+            {
+              "name": "native_research_flag_29",
+              "field": 29,
+              "codec": "bool"
+            },
+            {
+              "name": "native_research_flag_31",
+              "field": 31,
+              "codec": "bool"
+            },
+            {
+              "name": "native_research_flag_33",
+              "field": 33,
+              "codec": "bool"
+            },
+            {
+              "name": "ai_priority",
+              "field": 17,
+              "codec": "link"
+            }
+          ]
+        }
+      ]
+    },
+    "spell_unlock_property": {
+      "class_id": "00471DDA",
+      "kind": "side_property",
+      "classes": [
+        {
+          "class_id": "00471DDA",
+          "fields": [
+            {
+              "name": "empty_title",
+              "field": 1,
+              "codec": "preserved"
+            },
+            {
+              "name": "empty_description",
+              "field": 2,
+              "codec": "preserved"
+            },
+            {
+              "name": "native_unlock_flag_3",
+              "field": 3,
+              "codec": "bool"
+            },
+            {
+              "name": "operations",
+              "field": 4,
+              "codec": "links"
+            }
+          ]
+        }
+      ]
+    },
+    "texture_atlas_icon": {
+      "class_id": "00460075",
+      "kind": "icon",
+      "classes": [
+        {
+          "class_id": "040001F3",
+          "fields": [
+            {
+              "name": "atlas_region",
+              "field": 0,
+              "codec": "preserved"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

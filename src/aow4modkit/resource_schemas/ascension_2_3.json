@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "game_profile": "aow4-2.3-observed-v1",
+  "description": "Observed structural defaults only. Named text/icon/tag/side-property fields are authored separately; no native asset payloads.",
+  "localized_metadata": "8001000000041640000000000001000001010000",
+  "hero_skill_base_defaults": {
+    "4": "011e0001010000",
+    "9": "011e0001010000",
+    "10": "0101000102008001000000041640000000000001000001010000",
+    "12": "00",
+    "13": "011e0001010000",
+    "14": "0303000407050e011e0001010000011e0001010000011e0001010000",
+    "16": "011e0001010000",
+    "18": "01020000",
+    "19": "01020000",
+    "20": "01020000"
+  },
+  "hero_skill_normal_defaults": {
+    "8": "00",
+    "9": "00000000",
+    "23": "011e0001010000"
+  }
+}

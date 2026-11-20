@@ -1,0 +1,26 @@
+{
+  "format_version": 1,
+  "dlc": {
+    "key": "rise_from_ruin",
+    "title": "Rise From Ruin",
+    "content_folder": "RiseFromRuin"
+  },
+  "resources": [
+    {
+      "key": "rise_from_ruin.fractured_transformation",
+      "kind": "racial_transformation",
+      "id": "0000049700003828",
+      "name": "Fractured Transformation - Racial Transformation",
+      "url": "[#0000049700003828]0\\\\2",
+      "pack": "Fractured_Research.rpk"
+    },
+    {
+      "key": "rise_from_ruin.fractured_unlock",
+      "kind": "side_property",
+      "id": "000004970000382C",
+      "name": "Fractured Transformation - Unlock Property",
+      "url": "[#000004970000382C]0\\\\0",
+      "pack": "Fractured_Research.rpk"
+    }
+  ]
+}
